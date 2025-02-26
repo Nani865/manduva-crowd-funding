@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate to Support</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            background: black;
+            padding: 20px;
+            color: white;
+            margin: 0;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+            animation: fadeIn 1s ease-in-out;
+        }
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #ffcc00;
+        }
+        p {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: #ddd;
+        }
+        input {
+            width: 100%;
+            padding: 15px;
+            margin: 15px 0;
+            border: 2px solid #444;
+            border-radius: 10px;
+            font-size: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-align: center;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        input:focus {
+            border-color: #ffcc00;
+            box-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+            outline: none;
+        }
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .donate-button {
+            background: linear-gradient(90deg, #ff9800, #ff6600);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 22px;
+            transition: 0.3s;
+            margin-top: 20px;
+        }
+        .donate-button:hover {
+            background: linear-gradient(90deg, #ff6600, #ff9800);
+            transform: scale(1.05);
+        }
+        .back-button {
+            background: #444;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 18px;
+            margin-top: 20px;
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-button:hover {
+            background: #555;
+            transform: scale(1.05);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+    <script>
+        function redirectToUPI() {
+            const amount = document.getElementById('amount').value;
+            if (amount) {
+                localStorage.setItem('donationAmount', amount);
+                window.location.href = 'upi.html';
+            } else {
+                alert('Please enter a valid amount');
+            }
+        }
+
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Donate to Support</h1>
+        <p>Your contribution helps us bring our vision to life.</p>
+        <input type="number" id="amount" placeholder="Enter amount in ₹" required>
+        <button class="donate-button" onclick="redirectToUPI()">Proceed to Pay</button>
+        <button class="back-button" onclick="goBack()">Back to Home</button>
+    </div>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Details</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            background: black;
+            padding: 20px;
+            color: white;
+            margin: 0;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: rgba(20, 20, 20, 0.9);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            animation: fadeIn 1s ease-in-out;
+        }
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #ffcc00;
+        }
+        p {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: #ddd;
+        }
+        .upi-id {
+            font-size: 24px;
+            font-weight: bold;
+            background: #ffcc00;
+            color: black;
+            padding: 14px;
+            border-radius: 6px;
+            display: inline-block;
+            margin-top: 20px;
+            animation: glow 2s infinite alternate;
+        }
+        .copy-button, .confirm-button {
+            background: linear-gradient(90deg, #28a745, #32cd32);
+            color: white;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 20px;
+            margin-top: 20px;
+            transition: background 0.3s, transform 0.2s;
+        }
+        .copy-button:hover, .confirm-button:hover {
+            background: linear-gradient(90deg, #218838, #28a745);
+            transform: scale(1.05);
+        }
+        .footer {
+            margin-top: 40px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes glow {
+            from { box-shadow: 0 0 10px rgba(255, 204, 0, 0.5); }
+            to { box-shadow: 0 0 20px rgba(255, 204, 0, 0.8); }
+        }
+        @media (max-width: 600px) {
+            .container {
+                width: 90%;
+                padding: 25px;
+            }
+            .copy-button, .confirm-button {
+                width: 100%;
+            }
+        }
+    </style>
+    <script>
+        // Display the donation amount from localStorage
+        const donationAmount = localStorage.getItem('donationAmount');
+        if (donationAmount) {
+            document.getElementById('donation-amount').innerText = `Donation Amount: ₹${donationAmount}`;
+        }
+
+        function copyUPI() {
+            const upiText = document.getElementById("upi-id").innerText;
+            navigator.clipboard.writeText(upiText);
+            alert("UPI ID copied to clipboard!");
+        }
+
+        function redirectToThankYou() {
+            // Add confetti animation
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+
+            // Redirect after a short delay
+            setTimeout(() => {
+                window.location.href = "thankyou.html";
+            }, 1500);
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Payment Details</h1>
+        <p id="donation-amount">Donation Amount: ₹0</p>
+        <p>Use the UPI ID below to complete your donation:</p>
+        <div id="upi-id" class="upi-id">udaykiran6304@ybl</div>
+        <button class="copy-button" onclick="copyUPI()">Copy UPI ID</button>
+        <button class="confirm-button" onclick="redirectToThankYou()">I Have Paid</button>
+    </div>
+    <div class="footer">Thank you! - Writer and Director Uday Kiran Podeti and Team</div>
+</body>
+</html>
